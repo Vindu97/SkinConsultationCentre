@@ -154,7 +154,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 System.out.println("Available number of doctors = "+ doctors.size());
                 break;
             }else{
-                System.out.println("wrong licence number");
+                System.out.println("wrong licence nnnnn");
                 doctorDelete();
             }
 
