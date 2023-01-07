@@ -150,7 +150,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
             Doctor doctor = iter.next();
             if (doctor.getLicenceNumber().equals(finalDeleteName)) {
                 iter.remove();
-                System.out.println( " specialist Dr." +doctor.getName()+ " "+ doctor.getSurname()+ "("+doctor.getLicenceNumber()+") has been deleted.");
+                System.out.println(doctor.getSpecialisation()+ " specialist Dr." +doctor.getName()+ " "+ doctor.getSurname()+ "("+doctor.getLicenceNumber()+") has been deleted.");
                 System.out.println("Available number of doctors = "+ doctors.size());
                 break;
             }else{
