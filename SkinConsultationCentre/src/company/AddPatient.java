@@ -92,30 +92,40 @@ public class AddPatient extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
-            new ConsultationGUI();
+//            new ConsultationGUI();
+
 
 //                System.out.println(doctorBox.getSelectedItem());
 //                System.out.println(yearsField.getSelectedItem());
 ////            new AddPatient();
                 patientRecoverStats();
 
+            String name = textField1.getText();
+            String Surname = textField2.getText();
+            String Dob = textField3.getText();
+            String mNumber = textField4.getText();
+            String ID = textField5.getText();
+//            Patient pat = new Patient(name,Surname,Dob,mNumber,ID);
+//            patients.add(pat);
+//            this.dispose();
+            ConsultationGUI pat = new ConsultationGUI(ID,mNumber,Dob,Surname,name);
 
-                Frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                Frame2.setSize(300, 400);
-                Frame2.setLayout(new FlowLayout(FlowLayout.CENTER));
-                Frame2.setVisible(true);
-                Frame2.setFont(new Font("SERIF", Font.PLAIN, 50));
 
-                JTextArea Details = new JTextArea("-------------------- Details -------------------- :\n" + "\n" +
-                        "Name :" + textField1.getText() + "\n" + "\n" +
-                        "Surname :" + textField2.getText() + "\n" + "\n" +
-                        "Date of Birth :" + textField3.getText() + "\n" + "\n" +
-                        "Mobile Number :" + textField4.getText() + "\n" + "\n" +
-                        "ID :" + textField5.getText() + "\n" + "\n" +
-                        "--------------------------------------------------- ");
-                Frame2.add(Details);
-                Patient pat = new Patient(textField1.getText(), textField2.getText(), textField3.getText(), textField4.getText(), textField5.getText());
-                patients.add(pat);
+//                Frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//                Frame2.setSize(300, 400);
+//                Frame2.setLayout(new FlowLayout(FlowLayout.CENTER));
+//                Frame2.setVisible(true);
+//                Frame2.setFont(new Font("SERIF", Font.PLAIN, 50));
+//
+//                JTextArea Details = new JTextArea("-------------------- Details -------------------- :\n" + "\n" +
+//                        "Name :" + name+ "\n" + "\n" +
+//                        "Surname :" + Surname+ "\n" + "\n" +
+//                        "Date of Birth :" + Dob + "\n" + "\n" +
+//                        "Mobile Number :" + mNumber + "\n" + "\n" +
+//                        "ID :" + ID + "\n" + "\n" +
+//                        "--------------------------------------------------- ");
+//                Frame2.add(Details);
+
 //            patientSaveDetails(pat);
 
                 patientSaveDetails();
@@ -148,16 +158,16 @@ public class AddPatient extends JFrame implements ActionListener {
         private void patientRecoverStats () {
             try (BufferedReader reader = new BufferedReader(new FileReader(patientFile))) {
                 String line;
-                while ((line = reader.readLine()) == null) {
+                while ((line = reader.readLine()) != null) {
                     String[] parts = line.split("\t");
                     String name = parts[0];
                     String surname = parts[1];
-                    String dateOfBirth = parts[2];
-                    String mobileNumber = parts[3];
-                    String personId = parts[4];
+                    String Dob = parts[2];
+                    String mNumber = parts[3];
+                    String ID = parts[4];
 //                String specialization = parts[5];
-                    Patient patient = new Patient(name, surname, dateOfBirth, mobileNumber, personId);
-                    patients.add(patient);
+//                    Patient patient = new Patient(name, surname, Dob, mNumber, ID);
+//                    patients.add(patient);
 //                    doctorsList.add(new Doctor(name,surname,dateOfBirth,mobileNumber,medicalLicenceNumber,specialization));
                 }
             } catch (IOException exception) {

@@ -69,24 +69,6 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         System.out.println("");
         System.out.print("Enter Doctor Licence Number : ");
         String LNo = input.next();
-
-//        while (true) {
-//            String team = "name";
-//            for (Doctor doctor : WestminsterSkinConsultationManager.doctors) {
-//                if (doctor.getLicenceNumber().equals(LNo)) {
-//                    team = "rep_name";
-//                    break;
-//                }
-//            }
-//            if (team == "rep name") {
-//                System.out.println("Try name");
-//                System.out.println("licens");
-//                LNo = input.next();
-//            } else {
-//                break;
-//            }
-//        }
-
         System.out.print("Enter Doctor's name : ");
         String new_name = input.next();
         System.out.print("Enter Doctor's surname : ");
@@ -104,14 +86,13 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         System.out.print("Enter Doctor's Day: ");
         int day = input.nextInt();
         System.out.print("Enter Doctor's Start Time : ");
-        int stime = input.nextInt();
+        int sTime = input.nextInt();
         System.out.print("Enter Doctor's End Time : ");
         int eTime = input.nextInt();
         int min=0;
 
 
-
-        LocalDateTime time1 = LocalDateTime.of(year,month,day,stime,min);
+        LocalDateTime time1 = LocalDateTime.of(year,month,day,sTime,min);
         LocalDateTime time2 = LocalDateTime.of(year,month,day,eTime,min);
 
         Doctor f1 = new Doctor(LNo, new_name, surname, spec, doctor_dob, mobNo, time1,time2);
@@ -145,11 +126,11 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         String finalDeleteName = deleteName;
         //doctors.removeIf(doctor -> doctor.getLicenceNumber().equals(finalDeleteName));
 
-        Iterator<Doctor> iter = doctors.iterator();
-        while (iter.hasNext()) {
-            Doctor doctor = iter.next();
+        Iterator<Doctor> item = doctors.iterator();
+        while (item.hasNext()) {
+            Doctor doctor = item.next();
             if (doctor.getLicenceNumber().equals(finalDeleteName)) {
-                iter.remove();
+                item.remove();
                 System.out.println(doctor.getSpecialisation()+ " specialist Dr." +doctor.getName()+ " "+ doctor.getSurname()+ "("+doctor.getLicenceNumber()+") has been deleted.");
                 System.out.println("Available number of doctors = "+ doctors.size());
                 break;
@@ -157,43 +138,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
                 System.out.println("wrong licence number");
                 doctorDelete();
             }
-
-
-
         }
-
-
-
-
-//        while (true) {
-//            String sameName = "none";
-//            for (Doctor doctor :doctors) {
-//                if (Objects.equals(doctor.getLicenceNumber(), deleteName)) {
-//                    sameName = "repeatedName";
-//                    break;
-//                }
-//            }
-//            if (!sameName.equals("repeatedName")) {
-//                System.out.println("There is no name similar to this ");
-//                System.out.print("Reenter number : ");
-//                deleteName= input.next();
-//
-//            } else {
-//                break;
-//            }
-//        }
-//        if (doctors.size() == 0) {
-//            System.out.println("There ara no more doctors");
-//        } else {
-//            for (int i = 0; i < doctors.size(); i++) {
-//                //if (doctors.get(i).getLicenceNumber().equals(remove)) ;
-//                System.out.println("*** Deleted ***");
-//                doctors.remove(i);
-//
-//                maxNumDoctors = +1;
-//                break;
-//            }
-//        }
     }
 
     @Override

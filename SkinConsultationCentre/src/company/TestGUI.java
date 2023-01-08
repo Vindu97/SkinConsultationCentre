@@ -80,7 +80,7 @@ public class TestGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==Add_patient){
 //            this.dispose();
-            new AddPatient();
+            new PatientConsultation();
 
         }
         if (e.getSource()==doctors){
