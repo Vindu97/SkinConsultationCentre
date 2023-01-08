@@ -2,12 +2,14 @@ package company;
 
 import java.time.LocalDateTime;
 
+// Person's child class
 public class Doctor extends Person {
     private String licenceNumber;
     private String specialisation;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+    //Constructor
     public Doctor(String name, String surname, String dateOfBirth, String mobileNumber, String licenceNumber, String specialisation, LocalDateTime startTime, LocalDateTime endTime) {
         super(name, surname, dateOfBirth, mobileNumber);
         this.licenceNumber = licenceNumber;

@@ -10,12 +10,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
+//patient consultation GUI
 public class PatientConsultation extends JFrame implements ActionListener {
+    //Create patient array list
     static ArrayList<Patient> patients = new ArrayList<>();
+    //Create patient file
     File patientFile = new File("patient.txt");
 
     private ArrayList<Doctor> doctors;
 
+    //Create text fields
     JTextField textField1 = new JFormattedTextField();
     JTextField textField2 = new JFormattedTextField();
     JTextField textField3 = new JFormattedTextField();
@@ -29,7 +33,10 @@ public class PatientConsultation extends JFrame implements ActionListener {
     JTextField textField11 = new JFormattedTextField();
     JTextField textField12 = new JFormattedTextField();
 
+    //Create details frame
     JFrame Frame2 = new JFrame();
+
+    //Create panels
     JPanel pan1 = new JPanel();
     JPanel pan2 = new JPanel();
     JPanel pan3 = new JPanel();
@@ -38,8 +45,11 @@ public class PatientConsultation extends JFrame implements ActionListener {
     JLabel label12 = new JLabel();
 
     JComboBox comboBox;
+    //Submit button
     JButton button = new JButton("Submit");
+    //Upload image button
     JButton button2 = new JButton("Upload Image");
+
     public PatientConsultation() {
 
         pan1.setLayout(new GridLayout(7, 2, 5, 5));
@@ -143,6 +153,7 @@ public class PatientConsultation extends JFrame implements ActionListener {
 
 
         button2.addActionListener(new ActionListener() {
+            //Display image
             public void actionPerformed(ActionEvent e) {
 
                 JFileChooser file = new JFileChooser();
@@ -166,6 +177,7 @@ public class PatientConsultation extends JFrame implements ActionListener {
 
     }
 
+    //resize image
     public ImageIcon ResizeImage(String ImagePath) {
         ImageIcon MyImage = new ImageIcon(ImagePath);
         Image img = MyImage.getImage();
@@ -175,6 +187,7 @@ public class PatientConsultation extends JFrame implements ActionListener {
 
     }
 
+    //Submit Button actions
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==button){
@@ -273,6 +286,7 @@ public class PatientConsultation extends JFrame implements ActionListener {
         }
     }
 
+    //Save consultation details
     public void patientSaveDetails() {
 
 
@@ -287,6 +301,7 @@ public class PatientConsultation extends JFrame implements ActionListener {
 
     }
 
+    //Recover consultation details
     public void patientRecoverStats() {
         try (BufferedReader reader = new BufferedReader(new FileReader(patientFile))) {
             String line;

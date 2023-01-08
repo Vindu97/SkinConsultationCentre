@@ -1,6 +1,6 @@
 package company;
 
-
+//super class
 public class Person {
 
     private String name;
@@ -8,6 +8,7 @@ public class Person {
     private String dateOfBirth;
     private String mobileNumber;
 
+    //Constructor
     public Person(String name, String surname, String dateOfBirth, String mobileNumber) {
         this.name = name;
         this.surname = surname;

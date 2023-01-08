@@ -3,13 +3,20 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+//Console class
 public class WestminsterSkinConsultationManager implements SkinConsultationManager {
 
+    //create doctor array list
     static ArrayList<Doctor> doctors = new ArrayList<>();
+    //Create test file
     public File docFile = new File("file.text");
+    //Initiate maximum doctors
     static int maxNumDoctors = 10;
+
+    //Create input variable
     Scanner input = new Scanner(System.in);
 
+    //Console Menu
     public static void menu() {
         System.out.println("----------Menu----------");
         System.out.println("");
@@ -24,6 +31,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     }
 
+    //Initiate Menu list
     @Override
     public void menuList() {
 
@@ -63,6 +71,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
             }
         }
     }
+
+    //Get doctor details
     @Override
     public void doctorInput() {
 
@@ -92,6 +102,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         int min=0;
 
 
+        //Create localDate start time and end time
         LocalDateTime time1 = LocalDateTime.of(year,month,day,sTime,min);
         LocalDateTime time2 = LocalDateTime.of(year,month,day,eTime,min);
 
@@ -101,6 +112,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
 
 
+    //Check maximum doctors
     @Override
     public void addDoctor(Doctor doctor) {
         if (maxNumDoctors == doctors.size()) {
@@ -111,6 +123,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         }
     }
 
+
+    //Delete doctor from the list
     @Override
     public void doctorDelete() {
 
@@ -141,6 +155,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         }
     }
 
+
+    //Get doctor details as a table
     @Override
     public void doctorsTable() {
 
@@ -169,6 +185,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
     }
 
+
+    //Save doctor details
     @Override
     public void saveDetails() {
 
@@ -184,6 +202,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         }
 }
 
+    //Recover previous data
     @Override
     public void recoverStats() {
         try (BufferedReader reader = new BufferedReader(new FileReader(docFile))) {
@@ -207,6 +226,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         }
     }
 
+    //exit from the code
     @Override
     public void exit() {
         System.out.println("Program Exit");

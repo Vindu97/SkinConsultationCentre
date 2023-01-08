@@ -1,6 +1,6 @@
 package company;
 
-
+//Person's child class
 import java.time.LocalDateTime;
 
 public class Patient extends Person {
@@ -8,6 +8,7 @@ public class Patient extends Person {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
+    //Constructor
     public Patient(String name, String surname, String dateOfBirth, String mobileNumber, int personId, LocalDateTime startTime, LocalDateTime endTime) {
         super(name, surname, dateOfBirth, mobileNumber);
         this.personId = personId;

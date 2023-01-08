@@ -11,8 +11,10 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+//Create GUI first page
 public class TestGUI extends JFrame implements ActionListener {
 
+    //Create buttons
     JButton doctors = new JButton();
     JButton Add_patient = new JButton();
     JButton consultation = new JButton();
@@ -22,6 +24,7 @@ public class TestGUI extends JFrame implements ActionListener {
 
     public TestGUI() {
 
+        //View all doctors button
         doctors.setBounds(180,125,200,50);
         doctors.setBackground(new Color(0x87878A));
         doctors.addActionListener(this);
@@ -31,6 +34,7 @@ public class TestGUI extends JFrame implements ActionListener {
         doctors.setFont(new Font("SERIF",Font.BOLD,20));
 //        doctors.setBorder(BorderFactory.createEtchedBorder());
 
+        //Add consultation button
         Add_patient.setBounds(180,225,200,50);
         Add_patient.setBackground(new Color(0x87878A));
         Add_patient.addActionListener(this);
@@ -40,6 +44,7 @@ public class TestGUI extends JFrame implements ActionListener {
         Add_patient.setFont(new Font("SERIF",Font.BOLD,20));
 
 
+        //Exit button
         Add_notes.setBounds(180,325,200,50);
         Add_notes.setBackground(new Color(0x87878A));
         Add_notes.addActionListener(this);
@@ -48,6 +53,7 @@ public class TestGUI extends JFrame implements ActionListener {
         Add_notes.setVerticalTextPosition(JButton.CENTER);
         Add_notes.setFont(new Font("SERIF",Font.BOLD,20));
 
+        //Create labels
         JLabel label = new JLabel();
         label.setText("Westminster Skin Consultation Manager");
         label.setForeground(new Color(0x522552));
