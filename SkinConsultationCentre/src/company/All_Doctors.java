@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 
 import static company.WestminsterSkinConsultationManager.doctors;
 
-public class All_Doctors extends JFrame implements ActionListener {
+public class All_Doctors extends JFrame  {
 
     Table table = new Table(doctors);
-    JButton BackBtn;
+
 
     public All_Doctors() {
 
@@ -21,16 +21,6 @@ public class All_Doctors extends JFrame implements ActionListener {
     }
 
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource()==BackBtn){
-            this.dispose();
-            TestGUI GUI = new TestGUI();
-
-        }
-
-    }
 }
 
 //

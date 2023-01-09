@@ -1,57 +1,51 @@
 package company;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 //Create GUI first page
 public class TestGUI extends JFrame implements ActionListener {
 
     //Create buttons
-    JButton doctors = new JButton();
-    JButton Add_patient = new JButton();
+    JButton View_doctors = new JButton();
     JButton consultation = new JButton();
-    JButton Add_notes = new JButton();
-    JButton button5 = new JButton();
+    JButton Exit = new JButton();
+
 
 
     public TestGUI() {
+        PatientConsultation.patientRecoverStats();
 
         //View all doctors button
-        doctors.setBounds(180,125,200,50);
-        doctors.setBackground(new Color(0x87878A));
-        doctors.addActionListener(this);
-        doctors.setText("Doctors");
-        doctors.setHorizontalTextPosition(JButton.CENTER);
-        doctors.setVerticalTextPosition(JButton.CENTER);
-        doctors.setFont(new Font("SERIF",Font.BOLD,20));
-//        doctors.setBorder(BorderFactory.createEtchedBorder());
+        View_doctors.setBounds(180,125,200,50);
+        View_doctors.setBackground(new Color(0x5F5FA6));
+        View_doctors.addActionListener(this);
+        View_doctors.setText("Doctors");
+        View_doctors.setHorizontalTextPosition(JButton.CENTER);
+        View_doctors.setVerticalTextPosition(JButton.CENTER);
+        View_doctors.setFont(new Font("SERIF",Font.BOLD,20));
+
 
         //Add consultation button
-        Add_patient.setBounds(180,225,200,50);
-        Add_patient.setBackground(new Color(0x87878A));
-        Add_patient.addActionListener(this);
-        Add_patient.setText("Add_patient");
-        Add_patient.setHorizontalTextPosition(JButton.CENTER);
-        Add_patient.setVerticalTextPosition(JButton.CENTER);
-        Add_patient.setFont(new Font("SERIF",Font.BOLD,20));
+        consultation.setBounds(180,225,200,50);
+        consultation.setBackground(new Color(0x5F5FA6));
+        consultation.addActionListener(this);
+        consultation.setText("consultation");
+        consultation.setHorizontalTextPosition(JButton.CENTER);
+        consultation.setVerticalTextPosition(JButton.CENTER);
+        consultation.setFont(new Font("SERIF",Font.BOLD,20));
 
 
         //Exit button
-        Add_notes.setBounds(180,325,200,50);
-        Add_notes.setBackground(new Color(0x87878A));
-        Add_notes.addActionListener(this);
-        Add_notes.setText("Add some notes");
-        Add_notes.setHorizontalTextPosition(JButton.CENTER);
-        Add_notes.setVerticalTextPosition(JButton.CENTER);
-        Add_notes.setFont(new Font("SERIF",Font.BOLD,20));
+        Exit.setBounds(180,325,200,50);
+        Exit.setBackground(new Color(0x9B4C4C));
+        Exit.addActionListener(this);
+        Exit.setText("Exit");
+        Exit.setHorizontalTextPosition(JButton.CENTER);
+        Exit.setVerticalTextPosition(JButton.CENTER);
+        Exit.setFont(new Font("SERIF",Font.BOLD,20));
 
         //Create labels
         JLabel label = new JLabel();
@@ -63,20 +57,19 @@ public class TestGUI extends JFrame implements ActionListener {
         label.setVerticalAlignment(JLabel.TOP);
         label.setHorizontalAlignment(JLabel.CENTER);
 
-       // JFrame frame = new JFrame();
+
         this.setTitle("SkinConsultation ");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        frame.setLayout(null);
         this.setResizable(true);
         this.setSize(600, 540);
         this.setVisible(true);
-        this.getContentPane().setBackground(new Color(0xE3B8B8));
+//        this.getContentPane().setBackground(new Color(0xE3B8B8));
 
 
 
-        this.add(doctors);
-        this.add(Add_patient);
-        this.add(Add_notes);
+        this.add(View_doctors);
+        this.add(consultation);
+        this.add(Exit);
         this.add(label);
 
 
@@ -84,42 +77,17 @@ public class TestGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==Add_patient){
-//            this.dispose();
-            new PatientConsultation();
+        if (e.getSource()==consultation){
+            new ConsultationForm();
 
         }
-        if (e.getSource()==doctors){
-//            this.dispose();
+        if (e.getSource()==View_doctors){
             new All_Doctors();
 
         }
-//        if (e.getSource()==consultation){
-////            this.dispose();
-//            new GUIConsultation();
-//
-//        }
-//        if (e.getSource()==Add_notes){
-////            this.dispose();
-//            try {
-//                new AddNotes();
-//            } catch (NoSuchAlgorithmException ex) {
-//                throw new RuntimeException(ex);
-//            } catch (NoSuchPaddingException ex) {
-//                throw new RuntimeException(ex);
-//            } catch (InvalidKeyException ex) {
-//                throw new RuntimeException(ex);
-//            } catch (IllegalBlockSizeException ex) {
-//                throw new RuntimeException(ex);
-//            } catch (BadPaddingException ex) {
-//                throw new RuntimeException(ex);
-//            } catch (UnsupportedEncodingException ex) {
-//                throw new RuntimeException(ex);
-//            }
+        if (e.getSource()==Exit){
+            this.dispose();
 
-
-
-
+        }
     }
-
 }

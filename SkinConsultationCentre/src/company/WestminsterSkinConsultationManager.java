@@ -22,7 +22,7 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         System.out.println("");
         System.out.println(" 1 : Add a new doctor");
         System.out.println(" 2 : Delete doctor");
-        System.out.println(" 3 : Print the list of the doctors");
+        System.out.println(" 3 : Print the list of doctors");
         System.out.println(" 4 : Save in a file");
         System.out.println(" 5 : Graphical User Interface");
         System.out.println(" 6 : Exit");
@@ -67,7 +67,8 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
 
             }else {
                 System.out.println("*** Wrong Input ***");
-                return;
+//                return;
+                menuList();
             }
         }
     }
@@ -89,22 +90,46 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
         String doctor_dob = input.next();
         System.out.print("Enter Doctor's mobile number : ");
         String mobNo = input.next();
-        System.out.print("Enter Doctor's Year : ");
-        int year = input.nextInt();
-        System.out.print("Enter Doctor's Month : ");
-        int month = input.nextInt();
-        System.out.print("Enter Doctor's Day: ");
-        int day = input.nextInt();
-        System.out.print("Enter Doctor's Start Time : ");
-        int sTime = input.nextInt();
-        System.out.print("Enter Doctor's End Time : ");
-        int eTime = input.nextInt();
+
+        int syear;
+        int smonth;
+        int sday;
+        int sTime;
+        int eyear;
+        int emonth;
+        int eday;
+        int eTime;
+
+
+        while (true){
+        try {
+            System.out.print("Enter Doctor's available start Year : ");
+            syear = input.nextInt();
+            System.out.print("Enter Doctor's available start Month : ");
+            smonth = input.nextInt();
+            System.out.print("Enter Doctor's available start Day : ");
+            sday = input.nextInt();
+            System.out.print("Enter Doctor's available Start Time : ");
+            sTime = input.nextInt();
+            System.out.print("Enter Doctor's available End Year : ");
+            eyear = input.nextInt();
+            System.out.print("Enter Doctor's available End Month : ");
+            emonth = input.nextInt();
+            System.out.print("Enter Doctor's  available End Day : ");
+            eday = input.nextInt();
+            System.out.print("Enter Doctor's available End Time : ");
+            eTime = input.nextInt();
+            break;
+        }catch (Exception e){
+            System.out.println("Integer Required! Please enter the number");
+        }
+        }
         int min=0;
 
 
         //Create localDate start time and end time
-        LocalDateTime time1 = LocalDateTime.of(year,month,day,sTime,min);
-        LocalDateTime time2 = LocalDateTime.of(year,month,day,eTime,min);
+        LocalDateTime time1 = LocalDateTime.of(syear,smonth,sday,sTime,min);
+        LocalDateTime time2 = LocalDateTime.of(eyear,emonth,eday,eTime,min);
 
         Doctor f1 = new Doctor(LNo, new_name, surname, spec, doctor_dob, mobNo, time1,time2);
         addDoctor(f1);
@@ -128,32 +153,47 @@ public class WestminsterSkinConsultationManager implements SkinConsultationManag
     @Override
     public void doctorDelete() {
 
-        if (doctors.size() == 0) {
-            System.out.println("There ara no more doctors");
-            return;
-        }
-        String deleteName;
-        System.out.println("");
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Enter Doctor Licence Number : ");
-        deleteName = input.next();
-
-        String finalDeleteName = deleteName;
-        //doctors.removeIf(doctor -> doctor.getLicenceNumber().equals(finalDeleteName));
-
-        Iterator<Doctor> item = doctors.iterator();
-        while (item.hasNext()) {
-            Doctor doctor = item.next();
-            if (doctor.getLicenceNumber().equals(finalDeleteName)) {
-                item.remove();
+        String li = scanner.nextLine();
+        for (int i= 0;i<doctors.size();i++){
+            Doctor doctor = doctors.get(i);
+            if (doctor.getLicenceNumber().equals(li)){
+                doctors.remove(i);
                 System.out.println(doctor.getSpecialisation()+ " specialist Dr." +doctor.getName()+ " "+ doctor.getSurname()+ "("+doctor.getLicenceNumber()+") has been deleted.");
                 System.out.println("Available number of doctors = "+ doctors.size());
-                break;
-            }else{
-                System.out.println("wrong licence number");
-                doctorDelete();
+
+                return;
             }
         }
-    }
+        System.out.println("Doctor not found");}
+
+//        if (doctors.size() == 0) {
+//            System.out.println("There ara no more doctors");
+//            return;
+//        }
+//        String deleteName;
+//        System.out.println("");
+//        System.out.print("Enter Doctor Licence Number : ");
+//        deleteName = input.next();
+//
+//        String finalDeleteName = deleteName;
+//       // doctors.removeIf(doctor -> doctor.getLicenceNumber().equals(finalDeleteName));
+//
+//        Iterator<Doctor> item = doctors.iterator();
+//        while (item.hasNext()) {
+//            Doctor doctor = item.next();
+//            if (doctor.getLicenceNumber().equals(finalDeleteName)) {
+//                item.remove();
+//                System.out.println(doctor.getSpecialisation()+ " specialist Dr." +doctor.getName()+ " "+ doctor.getSurname()+ "("+doctor.getLicenceNumber()+") has been deleted.");
+//                System.out.println("Available number of doctors = "+ doctors.size());
+//                break;
+//            }else{
+//                System.out.println("wrong licence number");
+//                doctorDelete();
+//            }
+//        }
+
 
 
     //Get doctor details as a table

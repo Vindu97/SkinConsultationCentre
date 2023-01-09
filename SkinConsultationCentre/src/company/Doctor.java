@@ -10,7 +10,7 @@ public class Doctor extends Person {
     private LocalDateTime endTime;
 
     //Constructor
-    public Doctor(String name, String surname, String dateOfBirth, String mobileNumber, String licenceNumber, String specialisation, LocalDateTime startTime, LocalDateTime endTime) {
+    public Doctor(String licenceNumber, String name, String surname,String specialisation,String dateOfBirth, String mobileNumber,  LocalDateTime startTime, LocalDateTime endTime) {
         super(name, surname, dateOfBirth, mobileNumber);
         this.licenceNumber = licenceNumber;
         this.specialisation = specialisation;

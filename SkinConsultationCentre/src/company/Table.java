@@ -45,13 +45,13 @@ public class Table extends JFrame {
         JPanel panel = new JPanel();
         panel.add(scrollPane);
         add(panel,BorderLayout.CENTER);
-        panel.setBackground(new Color(0xE3B8B8));
+//        panel.setBackground(new Color(0xE3B8B8));
         this.setBounds(0, 50, 90, 40);
         this.setSize(600, 540);
 
         this.setTitle("SkinConsultation ");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.getContentPane().setBackground(new Color(0xE3B8B8));
+//        this.getContentPane().setBackground(new Color(0xE3B8B8));
 
 
 

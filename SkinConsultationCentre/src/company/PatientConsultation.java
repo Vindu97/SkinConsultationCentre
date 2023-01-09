@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 //patient consultation GUI
-public class PatientConsultation extends JFrame implements ActionListener {
+public class PatientConsultation extends WestminsterSkinConsultationManager implements ActionListener {
     //Create patient array list
-    static ArrayList<Patient> patients = new ArrayList<>();
+    public static ArrayList<Patient> patients = new ArrayList<>();
     //Create patient file
-    File patientFile = new File("patient.txt");
+    public static File patientFile = new File("patient.txt");
 
-    private ArrayList<Doctor> doctors;
+//    private ArrayList<Doctor> doctors;
+    JFrame fame1 = new JFrame();
 
     //Create text fields
     JTextField textField1 = new JFormattedTextField();
@@ -79,11 +80,14 @@ public class PatientConsultation extends JFrame implements ActionListener {
         pan1.add(textField5);
         JLabel l6 = new JLabel("Enter Doctor Name :");
         pan1.add(l6);
-        ArrayList<Doctor> Object = new ArrayList<Doctor>(WestminsterSkinConsultationManager.doctors);
+        ArrayList<Doctor> Object = new ArrayList<Doctor>(doctors);
         JComboBox<String> comboBox = new JComboBox<>();
         for (Doctor doctor : Object) {
             comboBox.addItem(doctor.getName());
         }
+        Object selectedItem = comboBox.getSelectedItem();
+        String selectedItemString = (String) selectedItem;
+        System.out.println("Enter Doctor Name :" + selectedItemString);
         pan1.add(comboBox);
 
 
@@ -135,21 +139,22 @@ public class PatientConsultation extends JFrame implements ActionListener {
         button.setHorizontalAlignment(JLabel.CENTER);
 
 
-        this.setTitle("SkinConsultation ");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(630, 850);
-        this.setLayout(new FlowLayout(FlowLayout.CENTER));
-        this.setVisible(true);
+
+        fame1.setTitle("SkinConsultation ");
+        fame1.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        fame1.setSize(630, 850);
+        fame1.setLayout(new FlowLayout(FlowLayout.CENTER));
+        fame1.setVisible(true);
 
 
-        this.add(label);
-        this.add(pan1);
-        this.add(pan2);
-        this.add(pan3);
-        this.add(pan4);
-        this.add(button2);
-        this.add(label12);
-        this.add(button);
+        fame1.add(label);
+        fame1.add(pan1);
+        fame1.add(pan2);
+        fame1.add(pan3);
+        fame1.add(pan4);
+        fame1.add(button2);
+        fame1.add(label12);
+        fame1.add(button);
 
 
         button2.addActionListener(new ActionListener() {
@@ -172,8 +177,8 @@ public class PatientConsultation extends JFrame implements ActionListener {
             }
         });
 
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fame1.setVisible(true);
+        fame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 
@@ -191,7 +196,7 @@ public class PatientConsultation extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==button){
-            patientRecoverStats();
+
             // Get form values
             String name = textField1.getText();
             String surname = textField2.getText();
@@ -213,9 +218,38 @@ public class PatientConsultation extends JFrame implements ActionListener {
 
 
             char[] chars = note.toCharArray();
-            for (char c : chars){
-                c +=5;
-                System.out.print(c);
+            for (char r : chars){
+                r +=5;
+                System.out.print(r);
+            }
+
+
+            Object selectedItem = comboBox.getSelectedItem();
+            String selectedItemString = (String) selectedItem;
+            System.out.println("Enter Doctor Name :" + selectedItemString);
+
+            for (int i = 0; i < WestminsterSkinConsultationManager.doctors.size(); i++) {
+                if (Objects.equals(WestminsterSkinConsultationManager.doctors.get(i).getName(), selectedItemString)) {
+                    boolean x = datetime2.isBefore(WestminsterSkinConsultationManager.doctors.get(i).getEndTime());
+                    boolean y = datetime1.isAfter(WestminsterSkinConsultationManager.doctors.get(i).getStartTime());
+                    if (x == true && y == true) {
+                        System.out.println("You have succesfully consulted Dr." + selectedItemString);
+                        break;
+                    } else {
+                        System.out.println("Dr." + selectedItemString + " is not available for this date and time.");
+                        for (int a = 0; a < WestminsterSkinConsultationManager.doctors.size(); a++) {
+                            boolean b = datetime2.isBefore(WestminsterSkinConsultationManager.doctors.get(a).getEndTime());
+                            boolean c = datetime1.isAfter(WestminsterSkinConsultationManager.doctors.get(a).getStartTime());
+                            if (b == true && c == true) {
+                                System.out.println("You will allocate for the Dr." + WestminsterSkinConsultationManager.doctors.get(a).getName());
+                                break;
+                            } else {
+                                System.out.println("Sorry! There is no any doctor for this date and time.");
+                                break;
+                            }
+                        }
+                    }
+                }
             }
 
             for (int i = 0; i < patients.size(); i++) {
@@ -227,33 +261,6 @@ public class PatientConsultation extends JFrame implements ActionListener {
                     break;
                 }
             }
-//            Object selectedItem = comboBox.getSelectedItem();
-//            String selectedItemString = (String) selectedItem;
-//            System.out.println("Enter Doctor Name :" + selectedItemString);
-
-//            for (int i = 0; i < WestminsterSkinConsultationManager.doctors.size(); i++) {
-//                if (Objects.equals(WestminsterSkinConsultationManager.doctors.get(i).getName(), selectedItemString)) {
-//                    boolean x = datetime2.isBefore(WestminsterSkinConsultationManager.doctors.get(i).getEndTime());
-//                    boolean y = datetime1.isAfter(WestminsterSkinConsultationManager.doctors.get(i).getStartTime());
-//                    if (x == true && y == true) {
-//                        System.out.println("You have succesfully consulted Dr." + selectedItemString);
-//                        break;
-//                    } else {
-//                        System.out.println("Dr." + selectedItemString + " is not available for this date and time.");
-//                        for (int a = 0; a < WestminsterSkinConsultationManager.doctors.size(); a++) {
-//                            boolean b = datetime2.isBefore(WestminsterSkinConsultationManager.doctors.get(a).getEndTime());
-//                            boolean c = datetime1.isAfter(WestminsterSkinConsultationManager.doctors.get(a).getStartTime());
-//                            if (b == true && c == true) {
-//                                System.out.println("You will allocate for the Dr." + WestminsterSkinConsultationManager.doctors.get(a).getName());
-//                                break;
-//                            } else {
-//                                System.out.println("Sorry! There is no any doctor for this date and time.");
-//                                break;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
 
 
             Frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -278,10 +285,8 @@ public class PatientConsultation extends JFrame implements ActionListener {
 
 //            for (Patient patient : patients) {
 //                System.out.println(patient.getName() + " , " + patient.getPersonId());
-//            }
 
             patientSaveDetails();
-
 
         }
     }
@@ -300,9 +305,8 @@ public class PatientConsultation extends JFrame implements ActionListener {
         }
 
     }
-
     //Recover consultation details
-    public void patientRecoverStats() {
+    public static void patientRecoverStats() {
         try (BufferedReader reader = new BufferedReader(new FileReader(patientFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -322,147 +326,5 @@ public class PatientConsultation extends JFrame implements ActionListener {
             // File not found or error reading file, ignore and start with empty list of doctors
         }
     }
-
-
-
 }
-//    private ArrayList<Doctor> doctors;
-//
-//    static ArrayList<Patient> patients = new ArrayList<>();
-//    File patientFile = new File("patient.txt");
-//    JFrame Frame2 = new JFrame();
-//
-//    JComboBox<String> docComboBox = new JComboBox<>();
-//    JTextField textField1 = new JFormattedTextField();
-//    JTextField textField2 = new JFormattedTextField();
-//    JTextField textField3 = new JFormattedTextField();
-//    JTextField textField4 = new JFormattedTextField();
-//    JTextField textField5 = new JFormattedTextField();
-//    JTextField textField6 = new JFormattedTextField();
-//    JTextField textField7 = new JFormattedTextField();
-//    JTextField textField8 = new JFormattedTextField();
-//    JTextField textField9 = new JFormattedTextField();
-//    JTextField textField11 = new JFormattedTextField();
-//    JTextField noteField = new JFormattedTextField();
-//    JPanel pan1 = new JPanel();
-//    JPanel pan2 = new JPanel();
-//    JPanel pan3 = new JPanel();
-//    JButton button = new JButton("Submit");
-//
-//    public PatientConsultation() {
-//
-//        pan1.setLayout(new GridLayout(14, 1, 5, 5));
-//        pan2.setLayout(new GridLayout(1, 1, 5, 5));
-//        pan3.setLayout(new GridLayout(1, 1, 5, 5));
-//
-//        JLabel l1 = new JLabel("Name :");
-//        pan1.add(l1);
-//        textField1.setPreferredSize(new Dimension(450, 40));
-//        pan1.add(textField1);
-//        JLabel l2 = new JLabel("Surname :");
-//        pan1.add(l2);
-//        textField2.setPreferredSize(new Dimension(250, 40));
-//        pan1.add(textField2);
-//        JLabel l3 = new JLabel("Date of Birth :");
-//        pan1.add(l3);
-//        textField3.setPreferredSize(new Dimension(250, 40));
-//        pan1.add(textField3);
-//        JLabel l4 = new JLabel("Mobile Number :");
-//        pan1.add(l4);
-//        textField4.setPreferredSize(new Dimension(250, 40));
-//        pan1.add(textField4);
-//        JLabel l5 = new JLabel("ID :");
-//        pan1.add(l5);
-//        textField5.setPreferredSize(new Dimension(250, 40));
-//        pan1.add(textField5);
-//        //pan1.setLayout(new GridLayout(1, 10, 3, 20));
-//        JLabel l6 = new JLabel("Year :");
-//        pan1.add(l6);
-//        textField6.setPreferredSize(new Dimension(50, 30));
-//        pan1.add(textField6);
-//        JLabel l7 = new JLabel("Month :");
-//        pan1.add(l7);
-//        textField7.setPreferredSize(new Dimension(50, 30));
-//        pan1.add(textField7);
-//        JLabel l8 = new JLabel("Day :");
-//        pan1.add(l8);
-//        textField8.setPreferredSize(new Dimension(50, 30));
-//        pan1.add(textField8);
-//
-//
-//        //pan2.setLayout(new GridLayout(1, 1, 3, 30));
-//        JLabel l9 = new JLabel("Start Time :");
-//        pan1.add(l9);
-//        textField9.setPreferredSize(new Dimension(10, 30));
-//        pan1.add(textField9);
-//        JLabel l11 = new JLabel("End Time :");
-//        pan1.add(l11);
-//        textField11.setPreferredSize(new Dimension(10, 30));
-//        pan1.add(textField11);
-//        JLabel Doctor = new JLabel("Enter Doctor Name :");
-//        ArrayList<Doctor> Object = new ArrayList<Doctor>(WestminsterSkinConsultationManager.doctors);
-//
-//        for (Doctor doctor : Object) {
-//            docComboBox.addItem(doctor.getName());
-//        }
-//
-//
-////        JTextArea ta = new JTextArea(10, 50);
-////        ta.append("adafsasvsc");
-//
-//       // pan3.setLayout(new GridLayout(1, 2, 5, 1));
-//        JLabel notes = new JLabel("Add some notes :");
-//        pan2.add(notes);
-//        noteField.setPreferredSize(new Dimension(350, 100));
-//        pan2.add(noteField);
-//
-//
-//
-//        Font font = new Font("Roboto", Font.BOLD, 40);
-//        JTextField textField = new JFormattedTextField(10);
-//        textField.setFont(font);
-//
-//        JLabel label = new JLabel();
-//        label.setText("Westminster Skin Consultation");
-//        label.setForeground(new Color(0x522552));
-//        label.setFont(new Font("SERIF", Font.BOLD, 28));
-//        label.setVisible(true);
-//        label.setVerticalAlignment(JLabel.TOP);
-//        label.setHorizontalAlignment(JLabel.CENTER);
-//
-//
-//        button.addActionListener(this);
-//        button.setFont(new Font("SERIF", Font.PLAIN, 20));
-//        button.setBackground(new Color(0xAD86CB86, true));
-//        button.setVerticalAlignment(JLabel.TOP);
-//        button.setHorizontalAlignment(JLabel.CENTER);
-//
-//
-//        this.setTitle("SkinConsultation ");
-//        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        this.setSize(550, 650);
-//        this.setLayout(new FlowLayout(FlowLayout.CENTER));
-//        this.setVisible(true);
-//
-//        this.add(label);
-//        this.add(pan1);
-//        this.add(pan2);
-//        this.add(pan3);
-//        this.add(button);
-//
-//        pan3.add(Doctor);
-//        pan3.add(docComboBox);
-//
-//
-//    }
-//
-//
-//
-//
-//
-//
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//
-//    }
 
